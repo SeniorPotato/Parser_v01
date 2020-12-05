@@ -118,22 +118,22 @@ public class Parser implements IParser {
 		new ParseTreeNode(new Terminal('1')))));
 		tree.print();
 		
-		/*
+		///*
 		int n = w.length();
-    int r = cfg.size();
-    //Vector<String> startingsymbols = getSymbols(cfg);
+    //int r = cfg.size();
+    //Vector<String> startingsymbols = getVariable(cfg);
     String[] word = w.split("\\s");
     n = word.length;
     System.out.println("length of entry" + n);
     //let P[n,n,r] be an array of booleans. Initialize all elements of P to false.
-    boolean P[][][] = initialize3DVector(n, r);
+    boolean P[][][] = initialize3DVector(n, n);
     //n-> number of words of string entrada, 
     //r-> number of nonterminal symbols
 
     //This grammar contains the subset Rs which is the set of start symbols
     for (int i = 1; i < n; i++) {
-        for(int j = 0; j < r; j++) {
-            String[] rule = (String[]) cfg.get(j);
+        for(int j = 0; j < n; j++) {
+            String[] rule = (String[]) cfg.getVariable(j);
             if (rule.length == 2) {
                 if (rule[1].equals(word[i])) {
                     System.out.println("entrou");
@@ -151,8 +151,8 @@ public class Parser implements IParser {
 
             for(int k = 1; k < i - 1; k++) {
                 System.out.println("THIRD:" + k);
-                for(int g = 0; g < r; g++) {
-                    String[] rule = (String[]) cfg.get(g);
+                for(int g = 0; g < n; g++) {
+                    String[] rule = (String[]) cfg.getVariable(g);
                     if (rule.length > 2) {
                         int A = returnPos(rule[0]);
                         int B = returnPos(rule[1]);
@@ -172,10 +172,10 @@ public class Parser implements IParser {
         }
     }
 
-    for(int x = 0; x < r; x++) {
+    for(int x = 0; x < n; x++) {
         if(P[1][n][x]) return true;
     }
-		*/
+		//*/
 		return null;
 	}
 }
