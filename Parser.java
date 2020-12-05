@@ -100,7 +100,82 @@ public class Parser implements IParser {
 		return true;
 	}
 
+	
+	
 	public ParseTreeNode generateParseTree(ContextFreeGrammar cfg, Word w) {
+		
+		ParseTreeNode tree = 
+		new ParseTreeNode(new Variable("A0"), 
+		new ParseTreeNode(new Variable('Z'), 
+		new ParseTreeNode(new Terminal('0'))),
+		new ParseTreeNode(new Variable('B'), 
+		new ParseTreeNode(new Variable('A'), 
+		new ParseTreeNode(new Variable('Z'), 
+		new ParseTreeNode(new Terminal('0'))), 
+		new ParseTreeNode(new Variable('Y'), 
+		new ParseTreeNode(new Terminal('1')))), 
+		new ParseTreeNode(new Variable('Y'), 
+		new ParseTreeNode(new Terminal('1')))));
+		tree.print();
+		
+		/*
+		int n = w.length();
+    int r = cfg.size();
+    //Vector<String> startingsymbols = getSymbols(cfg);
+    String[] word = w.split("\\s");
+    n = word.length;
+    System.out.println("length of entry" + n);
+    //let P[n,n,r] be an array of booleans. Initialize all elements of P to false.
+    boolean P[][][] = initialize3DVector(n, r);
+    //n-> number of words of string entrada, 
+    //r-> number of nonterminal symbols
+
+    //This grammar contains the subset Rs which is the set of start symbols
+    for (int i = 1; i < n; i++) {
+        for(int j = 0; j < r; j++) {
+            String[] rule = (String[]) cfg.get(j);
+            if (rule.length == 2) {
+                if (rule[1].equals(word[i])) {
+                    System.out.println("entrou");
+                    System.out.println(rule[1]);
+                    P[i][1][j + 1] = true;
+                }
+            }
+        }
+    }
+    for(int i = 2; i < n; i++) {
+        System.out.println("FIRST:" + i);
+
+        for(int j = 1; j < n - i + 1; j++) {
+            System.out.println("SECOND:" + j);
+
+            for(int k = 1; k < i - 1; k++) {
+                System.out.println("THIRD:" + k);
+                for(int g = 0; g < r; g++) {
+                    String[] rule = (String[]) cfg.get(g);
+                    if (rule.length > 2) {
+                        int A = returnPos(rule[0]);
+                        int B = returnPos(rule[1]);
+                        int C = returnPos(rule[2]);
+                        System.out.println("A" + A);
+                        System.out.println("B" + B);
+                        System.out.println("C" + C);
+                        if (A!=-1 && B!=-1 && C!=-1) {
+                            if (P[j][k][B] && P[j + k][i - k][C]) {
+                                System.out.println("entrou2");
+                                P[j][i][A] = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    for(int x = 0; x < r; x++) {
+        if(P[1][n][x]) return true;
+    }
+		*/
 		return null;
 	}
 }
