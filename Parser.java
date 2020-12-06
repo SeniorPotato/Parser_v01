@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Parser implements IParser {
 	public boolean isInLanguage(ContextFreeGrammar cfg, Word w) {
+		//1st Alghorithm 
 		//getting the lenght of the test string/word
 		int n = w.length();
 
@@ -87,6 +88,67 @@ public class Parser implements IParser {
 				}
 			}
 		}
+		/*
+		// 2nd dynamic Alghorithm
+		int n = entrada.length();
+    int r = AllGrammar.size();
+    //Vector<String> startingsymbols = getSymbols(AllGrammar);
+    String[] ent = entrada.split("\\s");
+    n = ent.length;
+    System.out.println("length of entry" + n);
+    //let P[n,n,r] be an array of booleans. Initialize all elements of P to false.
+    boolean P[][][] = initialize3DVector(n, r);
+    //n-> number of words of string entrada, 
+    //r-> number of nonterminal symbols
+
+    //This grammar contains the subset Rs which is the set of start symbols
+    for (int i = 1; i < n; i++) {
+        for(int j = 0; j < r; j++) {
+            String[] rule = (String[]) AllGrammar.get(j);
+            if (rule.length == 2) {
+                if (rule[1].equals(ent[i])) {
+                    System.out.println("entrou");
+                    System.out.println(rule[1]);
+                    P[i][1][j + 1] = true;
+                }
+            }
+        }
+    }
+    for(int i = 2; i < n; i++) {
+        System.out.println("FIRST:" + i);
+
+        for(int j = 1; j < n - i + 1; j++) {
+            System.out.println("SECOND:" + j);
+
+            for(int k = 1; k < i - 1; k++) {
+                System.out.println("THIRD:" + k);
+                for(int g = 0; g < r; g++) {
+                    String[] rule = (String[]) AllGrammar.get(g);
+                    if (rule.length > 2) {
+                        int A = returnPos(rule[0]);
+                        int B = returnPos(rule[1]);
+                        int C = returnPos(rule[2]);
+                        System.out.println("A" + A);
+                        System.out.println("B" + B);
+                        System.out.println("C" + C);
+                        if (A!=-1 && B!=-1 && C!=-1) {
+                            if (P[j][k][B] && P[j + k][i - k][C]) {
+                                System.out.println("entrou2");
+                                P[j][i][A] = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    for(int x = 0; x < r; x++) {
+        if(P[1][n][x]) return true;
+    }
+
+    return false;
+		*/
 		return false;
 	}
 
