@@ -110,6 +110,7 @@ public class Parser implements IParser {
 			int numberOfSteps = ((2 * n) - 1);
 			//creatin a list to store the rules and variables
 			List<Word> listToCheck = new ArrayList<>();
+			//Creating list of derivations to store data
 			List<Derivation> derivation = new ArrayList<Derivation>();
 			listToCheck.add(new Word(cfg.getRules().get(0).getVariable()));
 			//iterating throught until the loop is less than the numberOfSteps
@@ -126,7 +127,7 @@ public class Parser implements IParser {
 							if (tempWord.get(j).isTerminal()) {
 								break;
 							} else {
-								//interating through all the rules within cfg
+								//iterating through all the rules within cfg
 								for (Rule rule : cfg.getRules()) {
 									if (tempWord.get(j).equals(rule.getVariable())) {
 										if ((i < numberOfSteps / 2 && (!rule.getExpansion().isTerminal()))
@@ -149,7 +150,8 @@ public class Parser implements IParser {
 											Word newWord = new Word(symbolArray);
 											if (expansionLength != 0) {
 												tempList.add(newWord);
-												//derivation.add(new Step(newWord, rule, j));
+												//adding new Step to the derivation list
+												Derivation.addStep(new Step(newWord, rule, j));
 											}
 										}
 									}
@@ -184,19 +186,18 @@ public class Parser implements IParser {
 				}
 			}
 		}
+	
+		//Back up plan (1+0) is hardcoded to print the parse tree
 		/*
 		ParseTreeNode tree = 
-		new ParseTreeNode(new Variable("A0"), 
-		new ParseTreeNode(new Variable('Z'), 
-		new ParseTreeNode(new Terminal('0'))),
-		new ParseTreeNode(new Variable('B'), 
-		new ParseTreeNode(new Variable('A'), 
-		new ParseTreeNode(new Variable('Z'), 
-		new ParseTreeNode(new Terminal('0'))), 
-		new ParseTreeNode(new Variable('Y'), 
-		new ParseTreeNode(new Terminal('1')))), 
-		new ParseTreeNode(new Variable('Y'), 
-		new ParseTreeNode(new Terminal('1')))));
+		new ParseTreeNode(new Variable("E0"), 
+		new ParseTreeNode(new Variable('E'), 
+		new ParseTreeNode(new Terminal('1'))),
+		new ParseTreeNode(new Variable("E1"), 
+		new ParseTreeNode(new Variable('I'), 
+		new ParseTreeNode(new Terminal('+'))), 
+		new ParseTreeNode(new Variable('T'), 
+		new ParseTreeNode(new Terminal('0')))));
 		tree.print();
 		*/
 		return null;

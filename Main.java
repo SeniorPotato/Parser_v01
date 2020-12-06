@@ -37,7 +37,10 @@ class Main {
 		//System.out.println("\nDoes the given Context Free Grammar generate the string: (" + testString + ")?\n");
 
 		// this should print true!
-		//System.out.println(parser.isInLanguage(cfg, testString)); //this is the good one
+		//Alghorithm 1
+		//System.out.println(parser.isInLanguage(cfg, testString)); 
+		
+		//Parsetree
 		System.out.println(parser.generateParseTree(cfg, testString));
 
 		//System.out.println(cfg.isInChomskyNormalForm());
